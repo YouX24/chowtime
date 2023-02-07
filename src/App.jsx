@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from 'react';
+import Home from "./components/Home.jsx";
 
 function App() {
 
-  return (
-    <div>
+  const [listItem, setListItem] = useState([])
 
+  return (
+    <div className="min-h-screen bg-gray-500">
+      <Home/>
     </div>
   )
 }
