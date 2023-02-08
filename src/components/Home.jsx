@@ -1,6 +1,7 @@
 import AddBar from "./AddBar";
 import Generate from "./Generate";
-import Item from "./Item"
+import Item from "./Item";
+import Option from "./Option";
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <div className="flex justify-center">
                 <Item/>
             </div>
+            <Option/>
         </>
     )
 }
