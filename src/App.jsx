@@ -8,12 +8,16 @@ function App() {
 
   const [itemsObj, setItemsObj] = useState({})
 
+
+  // add to items to itemsObj
   const addItem = (itemName) => {
     const id = uuidv4()
     let itemsObjCopy = {[id]:itemName, ...itemsObj}
     setItemsObj(itemsObjCopy)
   }
 
+
+  // remove items from itemsObj
   const removeItem = (itemID) => {
     let itemsObjCopy = {...itemsObj}
     delete itemsObjCopy[itemID]

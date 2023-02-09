@@ -2,6 +2,7 @@ import { MdClose } from "react-icons/md";
 
 const Item = (props) => {
 
+    // remove item from itemsObj, referencing the unique itemID that was assigned to each item
     const remove = () => {
         props.removeItem(props.itemID)
     }

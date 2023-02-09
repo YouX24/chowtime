@@ -4,6 +4,7 @@ import Item from "./Item";
 
 const Home = (props) => {
 
+    // return a list of <Item/> components from itemObj state
     const getAllItems = () => {
         let keyItems = []
         for (const [k, v] of Object.entries(props.itemsObj)) {
@@ -14,10 +15,10 @@ const Home = (props) => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-500">
+        <div className="min-h-screen bg-gray-500 pb-10">
             <AddBar addItem={props.addItem}/>
             <Generate/>
-            <div className="flex justify-center flex-col items-center">
+            <div className="flex justify-center flex-col items-center mt-10">
                 {getAllItems()}
             </div>
         </div>
