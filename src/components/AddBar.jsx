@@ -16,7 +16,9 @@ const AddBar = (props) => {
     const add = () => {
         if (inputValue === "") return
         props.addItem(inputValue)
+        setInputValue("")
     }
+
 
     return (
         <div className="flex justify-center flex-col items-center">
