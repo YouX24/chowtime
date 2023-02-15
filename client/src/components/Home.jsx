@@ -17,7 +17,7 @@ const Home = (props) => {
     return (
         <div className="min-h-screen bg-gray-500 pb-10">
             <AddBar addItem={props.addItem}/>
-            <Generate/>
+            <Generate createSurvey={props.createSurvey}/>
             <div className="flex justify-center flex-col items-center mt-10">
                 {getAllItems()}
             </div>
