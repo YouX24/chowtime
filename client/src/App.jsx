@@ -6,21 +6,21 @@ import Survey from "./components/Survey";
 
 function App() {
 
-  const [itemsObj, setItemsObj] = useState({})
+  const [optObj, setOptObj] = useState({})
 
   // add to items to itemsObj
   const addItem = (itemName) => {
     const id = uuidv4()
-    let itemsObjCopy = {[id]:itemName, ...itemsObj}
-    setItemsObj(itemsObjCopy)
+    let itemsObjCopy = {[id]:itemName, ...optObj}
+    setOptObj(itemsObjCopy)
   }
 
 
   // remove items from itemsObj
   const removeItem = (itemID) => {
-    let itemsObjCopy = {...itemsObj}
+    let itemsObjCopy = {...optObj}
     delete itemsObjCopy[itemID]
-    setItemsObj(itemsObjCopy)
+    setOptObj(itemsObjCopy)
   }
 
 // get data from backend
@@ -48,7 +48,7 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          items: itemsObj,
+          options: optObj,
           surveyID: id
         })
       });
@@ -62,7 +62,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home itemsObj={itemsObj} addItem={addItem} removeItem={removeItem} createSurvey={createSurvey}/>}/>
+        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} createSurvey={createSurvey}/>}/>
         <Route path="/survey/" element={<Survey/>}/>
         /* can use below route for 404 page */
         {/* <Route path="*" element={<NotFound/>} */} 

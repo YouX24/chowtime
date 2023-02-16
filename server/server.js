@@ -1,6 +1,6 @@
 const express = require("express");
-// const Supabase = require("@supabase/supabase.js");
-const cors = require("cors")
+const cors = require("cors");
+const { createClient } = require("@supabase/supabase-js");
 require('dotenv').config()
 
 // const supabase = new Supabase(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
@@ -9,6 +9,9 @@ const jsonParser = express.json()
 
 app.use(jsonParser);
 app.use(cors())
+
+// Supabase Connection
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
 app.post("/createSurvey", (req, res) => {
     const data = req.body
@@ -21,12 +24,34 @@ app.post("/createSurvey", (req, res) => {
 //     res.status(200).json({info: "preset text"})
 // })
 
-app.post("/", (req, res) => {
-    const { items, surveyID } = req.body
-    console.log(items, surveyID)
-    if (!items) {
+// insert into survey table
+const handleSurveyInsert = async (surveyID) => {
+    const { data, error } = await supabase
+        .from("survey")
+        .insert({surveyID})
+}
+
+
+// insert into options table
+const handleOptionInsert = async (id, optName, surveyID) => {
+    const { data, error } = await supabase
+        .from("options")
+        .insert({id, optName, surveyID})
+}
+
+app.post("/", async (req, res) => {
+    const { options, surveyID } = req.body
+    if (!options) {
         return res.status(400).send({status: "failed"})
     }
+
+    handleSurveyInsert(surveyID)
+
+    for (let opt in options) {
+        handleOptionInsert(opt, options[opt], surveyID)
+    }
+
+
     res.status(200).send({status: "received"})
 })
 
