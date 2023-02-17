@@ -5,7 +5,7 @@ const Survey = () => {
     const { id } = useParams()
 
     return (
-        <div min-h-full bg-green-500>
+        <div className="min-h-full bg-green-500">
             <p>survey page {id}</p>
         </div>
     )

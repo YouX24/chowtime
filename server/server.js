@@ -36,10 +36,12 @@ const handleSurveyInsert = async (surveyID) => {
 const handleOptionInsert = async (id, optName, surveyID) => {
     const { data, error } = await supabase
         .from("options")
-        .insert({id, optName, surveyID})
+        .insert({id, optName, surveyID}) // variable name must be same as in supabase
 }
 
-app.post("/", async (req, res) => {
+
+// post route for inserting into supabase
+app.post("/insert", async (req, res) => {
     const { options, surveyID } = req.body
     if (!options) {
         return res.status(400).send({status: "failed"})
@@ -50,8 +52,7 @@ app.post("/", async (req, res) => {
     for (let opt in options) {
         handleOptionInsert(opt, options[opt], surveyID)
     }
-
-
+    
     res.status(200).send({status: "received"})
 })
 

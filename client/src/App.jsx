@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Home from "./components/Home";
@@ -7,6 +7,19 @@ import Survey from "./components/Survey";
 function App() {
 
   const [optObj, setOptObj] = useState({})
+  const [showErrorPopUp, setShowErrorPopUp] = useState(false)
+  const [showVerification, setShowVerification] = useState(false)
+  const navigate = useNavigate();
+
+
+  // handle pop up, show popup, make it disappear after 3 seconds
+  const handleErrorPopUp = () => {
+    setShowErrorPopUp(true)
+    setTimeout(() => {
+      setShowErrorPopUp(false)
+    }, 3000)
+  }
+
 
   // add to items to itemsObj
   const addItem = (itemName) => {
@@ -37,12 +50,31 @@ function App() {
   //   }
   // };
 
+
+  // insert into database or continue adding more options
+  const handleVerification = (e) => {
+    const value = e.target.value
+    if (value === "Yes") {
+      createSurvey()
+    }
+    setShowVerification(false)
+  }
+
+
+  // show error pop up or show verification pop up
+  const verifySurveyCreation = () => {
+    if (Object.keys(optObj).length === 0) {
+      handleErrorPopUp()
+    } else {
+      setShowVerification(true)
+    }
+  }
+
   // pass data from frontend to backend
-  // TODO: pass data to backend and insert data into database
   const createSurvey = async () => {
     const id = uuidv4()
     try {
-      const response = await fetch("http://localhost:5000/", {
+      const response = await fetch("http://localhost:5000/insert", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -52,6 +84,7 @@ function App() {
           surveyID: id
         })
       });
+      navigate('/survey/'+id);
     } catch (error) {
       console.error(error);
     }
@@ -62,8 +95,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} createSurvey={createSurvey}/>}/>
-        <Route path="/survey/" element={<Survey/>}/>
+        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showErrorPopUp={showErrorPopUp} showVerification={showVerification} handleVerification={handleVerification}/>}/>
+        <Route path="/survey" element={<Survey/>}/>
+        <Route path="/survey/:id" element={<Survey/>}/>
         /* can use below route for 404 page */
         {/* <Route path="*" element={<NotFound/>} */} 
       </Routes>
