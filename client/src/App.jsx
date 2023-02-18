@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Home from "./components/Home";
 import Survey from "./components/Survey";
+import ShareLink from "./components/ShareLink";
 
 function App() {
 
@@ -84,7 +85,7 @@ function App() {
           surveyID: id
         })
       });
-      navigate('/survey/'+id);
+      navigate('/sharelink/'+id);
     } catch (error) {
       console.error(error);
     }
@@ -97,7 +98,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showErrorPopUp={showErrorPopUp} showVerification={showVerification} handleVerification={handleVerification}/>}/>
         <Route path="/survey" element={<Survey/>}/>
-        <Route path="/survey/:id" element={<Survey/>}/>
+        <Route path="/sharelink/:surveyID" element={<ShareLink/>}/>
         /* can use below route for 404 page */
         {/* <Route path="*" element={<NotFound/>} */} 
       </Routes>
