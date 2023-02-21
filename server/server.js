@@ -13,16 +13,6 @@ app.use(cors())
 // Supabase Connection
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
-app.post("/createSurvey", (req, res) => {
-    const data = req.body
-    console.log(data)
-    res.send(data)
-});
-
-
-// app.get("/info", (req, res) => {
-//     res.status(200).json({info: "preset text"})
-// })
 
 // insert into survey table
 const handleSurveyInsert = async (surveyID) => {
@@ -33,10 +23,10 @@ const handleSurveyInsert = async (surveyID) => {
 
 
 // insert into options table
-const handleOptionInsert = async (id, optName, surveyID) => {
+const handleOptionInsert = async (id, optName, surveyID, wins) => {
     const { data, error } = await supabase
         .from("options")
-        .insert({id, optName, surveyID}) // variable name must be same as in supabase
+        .insert({id, optName, surveyID, wins}) // variable name must be same as in supabase
 }
 
 
@@ -50,10 +40,27 @@ app.post("/insert", async (req, res) => {
     handleSurveyInsert(surveyID)
 
     for (let opt in options) {
-        handleOptionInsert(opt, options[opt], surveyID)
+        handleOptionInsert(opt, options[opt], surveyID, 0)
     }
     
     res.status(200).send({status: "received"})
+})
+
+
+// get route to get options of a survey
+app.get("/retrieve/:surveyID", async (req, res) => {
+    const { surveyID } = req.params
+    // const columns = ["optName", "surveyID"];
+    const { data, error } = await supabase
+        .from("options")
+        .select("id, optName, surveyID")
+        .eq("surveyID", surveyID)
+    
+    if (error) {
+        return res.status(400).send({status: "failed"})
+    } else {
+        return res.status(200).json(data)
+    }
 })
 
 app.listen(5000, () => {console.log("Server started on port 5000")})

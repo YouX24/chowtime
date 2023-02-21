@@ -37,20 +37,6 @@ function App() {
     setOptObj(itemsObjCopy)
   }
 
-// get data from backend
-  // const createSurvey = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:5000/info", {
-  //       method: "GET",
-  //     });
-  //     console.log(response)
-  //     const data = await response.json()
-  //     console.log(data)
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
 
   // insert into database or continue adding more options
   const handleVerification = (e) => {
@@ -97,7 +83,7 @@ function App() {
     <>
       <Routes>
         <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showErrorPopUp={showErrorPopUp} showVerification={showVerification} handleVerification={handleVerification}/>}/>
-        <Route path="/survey" element={<Survey/>}/>
+        <Route path="/survey/:surveyID" element={<Survey/>}/>
         <Route path="/sharelink/:surveyID" element={<ShareLink/>}/>
         /* can use below route for 404 page */
         {/* <Route path="*" element={<NotFound/>} */} 
