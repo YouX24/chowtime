@@ -7,7 +7,7 @@ const Survey = () => {
     const [options, setOptions] = useState([])
 
     const displayOpt = options.map(option => {
-        const {id, optName, surveyID} = option
+        const {id, optName} = option
         return <p key={id}>{optName}</p>
     })
 
@@ -18,7 +18,6 @@ const Survey = () => {
                     method: "GET",
                 });
                 const data = await response.json()
-                console.log("data", data)
                 setOptions(data)
             } catch (error) {
                 console.log(error)
@@ -31,6 +30,10 @@ const Survey = () => {
         <div className="min-h-full bg-green-500">
             <p>survey page</p>
             {displayOpt}
+            <div>
+                <button className="w-[225px] bg-[#6634F7] rounded-lg text-white h-9">Option 1</button>
+                <button className="w-[225px] bg-[#6634F7] rounded-lg text-white h-9">Option 2</button>
+            </div>
         </div>
     )
 }

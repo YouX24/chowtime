@@ -8,8 +8,10 @@ import ShareLink from "./components/ShareLink";
 function App() {
 
   const [optObj, setOptObj] = useState({})
+  const [uniqueObj, setUniqObj] = useState(new Set())
   const [showErrorPopUp, setShowErrorPopUp] = useState(false)
   const [showVerification, setShowVerification] = useState(false)
+  const [showDuplication, setShowDuplication] = useState(false)
   const navigate = useNavigate();
 
 
@@ -22,8 +24,26 @@ function App() {
   }
 
 
+  // handle duplication pop up
+  const handleDuplicationPopUp = () => {
+    setShowDuplication(true)
+    setTimeout(() => {
+      setShowDuplication(false)
+    }, 3000)
+  }
+
+
   // add to items to itemsObj
   const addItem = (itemName) => {
+    if (uniqueObj.has(itemName)) {
+      handleDuplicationPopUp()
+      return
+    }
+
+    let uniqueObjCopy = new Set(uniqueObj).add(itemName)
+    setUniqObj(uniqueObjCopy)
+    console.log(uniqueObjCopy)
+
     const id = uuidv4()
     let itemsObjCopy = {[id]:itemName, ...optObj}
     setOptObj(itemsObjCopy)
@@ -33,8 +53,11 @@ function App() {
   // remove items from itemsObj
   const removeItem = (itemID) => {
     let itemsObjCopy = {...optObj}
+    let uniqueObjCopy = new Set(uniqueObj)
+    uniqueObjCopy.delete(itemsObjCopy[itemID])
     delete itemsObjCopy[itemID]
     setOptObj(itemsObjCopy)
+    setUniqObj(uniqueObjCopy)
   }
 
 
@@ -82,7 +105,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showErrorPopUp={showErrorPopUp} showVerification={showVerification} handleVerification={handleVerification}/>}/>
+        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showErrorPopUp={showErrorPopUp} showVerification={showVerification} handleVerification={handleVerification} showDuplication={showDuplication}/>}/>
         <Route path="/survey/:surveyID" element={<Survey/>}/>
         <Route path="/sharelink/:surveyID" element={<ShareLink/>}/>
         /* can use below route for 404 page */
