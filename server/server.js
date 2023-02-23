@@ -47,6 +47,24 @@ app.post("/insert", async (req, res) => {
 })
 
 
+// update option wins
+app.post("/update-win", async (req, res) => {
+    const { option, surveyID } = req.body
+    if (!option || !surveyID) {
+        return res.status(400).send({status: "failed"})
+    }
+    console.log(typeof surveyID)
+    const { data, error } = await supabase
+    .rpc('update_win', {survey_id: surveyID, option_name: option})
+
+    if (error) {
+        return res.status(400).send({status: "failed"})
+    } else {
+        return res.status(200).json(data)
+    }
+})
+
+
 // get route to get options of a survey
 app.get("/retrieve/:surveyID", async (req, res) => {
     const { surveyID } = req.params

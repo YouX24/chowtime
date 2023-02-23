@@ -1,9 +1,9 @@
 import AddBar from "./AddBar";
 import Generate from "./Generate";
 import Item from "./Item";
-import Modal from "./Modal";
 import Verification from "./Verification";
 import OptionDuplicationError from "./OptionDuplicationError";
+import OptionCountError from "./OptionCountError";
 
 const Home = (props) => {
 
@@ -20,10 +20,10 @@ const Home = (props) => {
     return (
         <div className="min-h-screen bg-gray-500 pb-10 px-4 pt-4">
             {props.showDuplication && <OptionDuplicationError/>}
-            {props.showErrorPopUp && <Modal/>}
+            {props.showOptionCountError && <OptionCountError/>}
             {props.showVerification && <Verification handleVerification={props.handleVerification}/>}
             <AddBar addItem={props.addItem}/>
-            <Generate createSurvey={props.verifySurveyCreation}/>
+            <Generate verifySurveyCreation={props.verifySurveyCreation}/>
             <div className="flex justify-center flex-col items-center mt-10">
                 {getAllItems()}
             </div>

@@ -16,7 +16,7 @@ const ShareLink = () => {
         <div className="min-h-screen bg-gray-500 flex justify-center items-center flex-col">
             <p className="text-center pb-2">You can copy and share this link to people participating in your survey</p>
             <div>
-                <input className="outline-none w-50 p-1 rounded-tl-lg rounded-bl-lg" id="sharable-link" type="text" value={surveyLink}/>
+                <input className="outline-none w-50 p-1 rounded-tl-lg rounded-bl-lg" id="sharable-link" type="text" value={surveyLink} readOnly/>
                 <button onClick={copyLink} className="bg-green-600 p-1 rounded-tr-lg rounded-br-lg">Copy</button>
             </div>
         </div>

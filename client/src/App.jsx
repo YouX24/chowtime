@@ -9,19 +9,10 @@ function App() {
 
   const [optObj, setOptObj] = useState({})
   const [uniqueObj, setUniqObj] = useState(new Set())
-  const [showErrorPopUp, setShowErrorPopUp] = useState(false)
   const [showVerification, setShowVerification] = useState(false)
   const [showDuplication, setShowDuplication] = useState(false)
+  const [showOptionCountError, setShowOptionCountError] = useState(false)
   const navigate = useNavigate();
-
-
-  // handle pop up, show popup, make it disappear after 3 seconds
-  const handleErrorPopUp = () => {
-    setShowErrorPopUp(true)
-    setTimeout(() => {
-      setShowErrorPopUp(false)
-    }, 3000)
-  }
 
 
   // handle duplication pop up
@@ -29,6 +20,15 @@ function App() {
     setShowDuplication(true)
     setTimeout(() => {
       setShowDuplication(false)
+    }, 3000)
+  }
+
+
+  // handle not enough options
+  const handleOptionCountPopUp = () => {
+    setShowOptionCountError(true)
+    setTimeout(() => {
+      setShowOptionCountError(false)
     }, 3000)
   }
 
@@ -42,7 +42,6 @@ function App() {
 
     let uniqueObjCopy = new Set(uniqueObj).add(itemName)
     setUniqObj(uniqueObjCopy)
-    console.log(uniqueObjCopy)
 
     const id = uuidv4()
     let itemsObjCopy = {[id]:itemName, ...optObj}
@@ -73,12 +72,13 @@ function App() {
 
   // show error pop up or show verification pop up
   const verifySurveyCreation = () => {
-    if (Object.keys(optObj).length === 0) {
-      handleErrorPopUp()
+    if (uniqueObj.size < 2) {
+      handleOptionCountPopUp()
     } else {
       setShowVerification(true)
     }
   }
+
 
   // pass data from frontend to backend
   const createSurvey = async () => {
@@ -105,7 +105,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showErrorPopUp={showErrorPopUp} showVerification={showVerification} handleVerification={handleVerification} showDuplication={showDuplication}/>}/>
+        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showVerification={showVerification} handleVerification={handleVerification} showDuplication={showDuplication} showOptionCountError={showOptionCountError}/>}/>
         <Route path="/survey/:surveyID" element={<Survey/>}/>
         <Route path="/sharelink/:surveyID" element={<ShareLink/>}/>
         /* can use below route for 404 page */
