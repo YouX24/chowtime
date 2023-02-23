@@ -54,7 +54,7 @@ const Survey = () => {
     const updateWinner = async () => {
         try {
             await fetch("http://localhost:5000/update-win", {
-                method: "POST",
+                method: "PUT",
                 headers: {
                 "Content-Type": "application/json"
                 },
@@ -68,10 +68,12 @@ const Survey = () => {
         }
     }
 
-    if (options.length === 1) {
-        console.log("hi")
-        updateWinner()
-    }
+    useEffect(() => {
+        if (options.length === 1) {
+            console.log("hi")
+            updateWinner()
+        }
+    }, [options])
 
     return (
         <div className="h-screen w-screen bg-green-500 flex justify-center items-center">

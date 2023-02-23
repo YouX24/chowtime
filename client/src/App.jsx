@@ -84,7 +84,7 @@ function App() {
   const createSurvey = async () => {
     const id = uuidv4()
     try {
-      const response = await fetch("http://localhost:5000/insert", {
+      await fetch("http://localhost:5000/insert", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

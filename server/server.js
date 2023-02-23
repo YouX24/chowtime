@@ -48,12 +48,13 @@ app.post("/insert", async (req, res) => {
 
 
 // update option wins
-app.post("/update-win", async (req, res) => {
+app.put("/update-win", async (req, res) => {
     const { option, surveyID } = req.body
+
     if (!option || !surveyID) {
         return res.status(400).send({status: "failed"})
     }
-    console.log(typeof surveyID)
+
     const { data, error } = await supabase
     .rpc('update_win', {survey_id: surveyID, option_name: option})
 
