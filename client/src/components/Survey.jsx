@@ -75,6 +75,7 @@ const Survey = () => {
         }
     }, [options])
 
+    const btnStyle = "w-40 h-12 bg-[#FCFCFD] text-[#36395A] rounded-md shadow-md shadow-gray-400 ease-in-out duration-200 hover:scale-105 hover:shadow-lg hover:shadow-gray-500"
     return (
         <div className="h-screen w-screen bg-green-500 flex justify-center items-center">
             {options.length === 0 && <Spinner/>}
@@ -82,13 +83,14 @@ const Survey = () => {
                 <div>Chow Time! You selected {options[0]}.</div>
             )}
             {options.length > 0 && options.length !== 1 && (
-                <div>
-                    <p>Which do you prefer?</p>
-                    <button onClick={removeOpt} className="w-[225px] bg-[#6634F7] rounded-lg text-white h-9" id="btn-1">{options[0]}</button>
-                    <button onClick={removeOpt} className="w-[225px] bg-[#6634F7] rounded-lg text-white h-9" id="btn-2">{options[1]}</button>
+                <div className="flex flex-col items-center">
+                    <p className="text-lg">Which do you prefer?</p>
+                    <div className="flex gap-4 mt-4">
+                        <button className={btnStyle} onClick={removeOpt} id="btn-1">{options[0]}</button>
+                        <button className={btnStyle} onClick={removeOpt} id="btn-2">{options[1]}</button>
+                    </div>
                 </div>
             )}
-            
         </div>
     )
 }
