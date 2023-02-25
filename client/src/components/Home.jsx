@@ -18,7 +18,7 @@ const Home = (props) => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-500 pb-10 px-4 pt-4">
+        <div className="min-h-screen bg-[#89C7AE] pb-10 px-4 pt-4">
             {props.showDuplication && <OptionDuplicationError/>}
             {props.showOptionCountError && <OptionCountError/>}
             {props.showVerification && <Verification handleVerification={props.handleVerification}/>}

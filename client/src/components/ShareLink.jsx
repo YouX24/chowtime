@@ -13,15 +13,15 @@ const ShareLink = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-500 flex justify-center items-center flex-col">
+        <div className="min-h-screen bg-[#89C7AE] flex justify-center items-center flex-col">
             <p className="text-center pb-2">Share this link with all participants</p>
             <div className="flex gap-2">
                 <input className="outline-none rounded-md p-1" id="sharable-link" type="text" value={surveyLink} readOnly/>
-                <button onClick={copyLink} className="bg-black text-white rounded-md p-1">Copy link</button>
+                <button onClick={copyLink} className="bg-[#3B584D] text-white rounded-md p-1">Copy link</button>
             </div>
             <div className="flex gap-4 mt-4">
-                <a href={`/survey/${surveyID}`} target="_blank"><button className="bg-[#c2fbd7] rounded-full w-28 h-10 shadow-md shadow-emerald-300 ease-in duration-200 hover:shadow-emerald-400 hover:scale-105 hover:shadow-lg">Go to Link</button></a>
-                <a href={`/survey/${surveyID}`} target="_blank"><button className="bg-[#c2fbd7] rounded-full w-28 h-10 shadow-md shadow-emerald-300 ease-in duration-200 hover:shadow-emerald-400 hover:scale-105 hover:shadow-lg">View Results</button></a>
+                <a href={`/survey/${surveyID}`} target="_blank"><button className="bg-[#FFDCC8] rounded-full w-28 h-10 shadow-md shadow-gray-400 ease-in-out duration-200 hover:scale-105 hover:shadow-lg hover:shadow-gray-500">Go to Link</button></a>
+                <a href={`/survey/${surveyID}`} target="_blank"><button className="bg-[#FFDCC8] rounded-full w-28 h-10 shadow-md shadow-gray-400 ease-in-out duration-200 hover:scale-105 hover:shadow-lg hover:shadow-gray-500">View Results</button></a>
             </div>
         </div>
     )
