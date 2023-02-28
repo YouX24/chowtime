@@ -80,7 +80,10 @@ const Survey = () => {
         <div className="h-screen w-screen bg-[#89C7AE] flex justify-center items-center">
             {options.length === 0 && <Spinner/>}
             {options.length === 1 && (
-                <div>Chow Time! You selected {options[0]}.</div>
+                <div className="flex flex-col justify-center items-center gap-4">
+                    <p>Chow Time! You selected <b>{options[0]}</b>.</p>
+                    <a href={`/result/${surveyID}`} target="_blank"><button className="bg-[#FFDCC8] rounded-full w-28 h-10 shadow-md shadow-gray-400 ease-in-out duration-200 hover:scale-105 hover:shadow-lg hover:shadow-gray-500">View Results</button></a>
+                </div>
             )}
             {options.length > 0 && options.length !== 1 && (
                 <div className="flex flex-col items-center">
