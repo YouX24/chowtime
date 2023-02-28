@@ -82,4 +82,20 @@ app.get("/retrieve/:surveyID", async (req, res) => {
     }
 })
 
+
+// get route to get options and options wins
+app.get("/getresult/:surveyID", async (req, res) => {
+    const { surveyID } = req.params
+    const { data, error } = await supabase
+        .from("options")
+        .select("optName, wins")
+        .eq("surveyID", surveyID)
+        .order("wins", {ascending: false})
+    if (error) {
+        return res.status(400).send({status: "failed"})
+    } else {
+        return res.status(200).json(data)
+    }
+})
+
 app.listen(5000, () => {console.log("Server started on port 5000")})

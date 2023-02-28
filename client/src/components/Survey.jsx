@@ -26,7 +26,6 @@ const Survey = () => {
                 console.log(error)
             }
         }
-        console.log("ON MOUNT")
         getOptions()
     }, [])
 

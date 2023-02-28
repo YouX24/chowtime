@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Home from "./components/Home";
 import Survey from "./components/Survey";
 import ShareLink from "./components/ShareLink";
+import Result from './components/Result';
 
 function App() {
 
@@ -108,6 +109,7 @@ function App() {
         <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showVerification={showVerification} handleVerification={handleVerification} showDuplication={showDuplication} showOptionCountError={showOptionCountError}/>}/>
         <Route path="/survey/:surveyID" element={<Survey/>}/>
         <Route path="/sharelink/:surveyID" element={<ShareLink/>}/>
+        <Route path="/result/:surveyID" element={<Result/>}/>
         /* can use below route for 404 page */
         {/* <Route path="*" element={<NotFound/>} */} 
       </Routes>
