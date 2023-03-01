@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ResultChart from "../components/ResultChart";
 
 const Result = () => {
 
     const { surveyID } = useParams()
-    const [result, setResult] = useState([])
+    const [chartData, setChartData] = useState({labels: [], datasets: [],})
 
     // fetch the data on mount
     useEffect(() => {
@@ -14,12 +15,7 @@ const Result = () => {
                     method: "GET",
                 });
                 const data = await response.json()
-                const resultArray = []
-                for (let d of data) {
-                    const { optName, wins } = d
-                    resultArray.push([optName, wins])
-                }
-                setResult(resultArray)
+                setUpChart(data)
             } catch (error) {
                 console.log(error)
             }
@@ -28,16 +24,28 @@ const Result = () => {
     }, [])
 
 
-    const resultList = result.map(res => (
-        <div key={res[0]}>
-            <p>{res[0]} -- {res[1]}</p>
-        </div>
-        
-    ))
+    const setUpChart = async(resultData) => {
+        setChartData({
+            labels: resultData.map(x => x.optName),
+            datasets: [
+                {
+                label: 'Votes',
+                data: resultData.map(x => x.wins),
+                backgroundColor: [
+                    'rgb(123, 233, 173)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1,
+                },
+            ],
+        })
+    }
 
     return (
         <div className="min-h-screen bg-[#89C7AE] flex justify-center items-center flex-col">
-            {resultList}
+            <ResultChart chartData={chartData}/>
         </div>
     )
 }
