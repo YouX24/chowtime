@@ -32,10 +32,10 @@ const Result = () => {
                 label: 'Votes',
                 data: resultData.map(x => x.wins),
                 backgroundColor: [
-                    'rgb(123, 233, 173)',
+                    '#FFDCC8',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    '#3B584D',
                 ],
                 borderWidth: 1,
                 },

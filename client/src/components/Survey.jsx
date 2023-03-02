@@ -80,15 +80,16 @@ const Survey = () => {
             {options.length === 0 && <Spinner/>}
             {options.length === 1 && (
                 <div className="flex flex-col justify-center items-center gap-4">
-                    <p>Chow Time! You selected <b>{options[0]}</b>.</p>
+                    <p className="text-center">Chow Time! You selected <b>{options[0]}</b>.</p>
                     <a href={`/result/${surveyID}`} target="_blank"><button className="bg-[#FFDCC8] rounded-full w-28 h-10 shadow-md shadow-gray-400 ease-in-out duration-200 hover:scale-105 hover:shadow-lg hover:shadow-gray-500">View Results</button></a>
                 </div>
             )}
             {options.length > 0 && options.length !== 1 && (
                 <div className="flex flex-col items-center">
                     <p className="text-lg">Which do you prefer?</p>
-                    <div className="flex gap-4 mt-4">
+                    <div className="flex gap-4 mt-4 items-center flex-col sm:flex-row">
                         <button className={btnStyle} onClick={removeOpt} id="btn-1">{options[0]}</button>
+                        <p>OR</p>
                         <button className={btnStyle} onClick={removeOpt} id="btn-2">{options[1]}</button>
                     </div>
                 </div>

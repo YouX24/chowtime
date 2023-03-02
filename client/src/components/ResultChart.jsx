@@ -26,7 +26,7 @@ const ResultChart = (props) => {
         }
     }
 
-    return <Bar data={props.chartData} options={options} />;
+    return <Bar data={props.chartData} options={options}/>;
 };
 
 export default ResultChart;

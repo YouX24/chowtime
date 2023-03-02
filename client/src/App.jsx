@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Survey from "./components/Survey";
 import ShareLink from "./components/ShareLink";
 import Result from './components/Result';
+import NotFound from './components/NotFound';
 
 function App() {
 
@@ -110,8 +111,7 @@ function App() {
         <Route path="/survey/:surveyID" element={<Survey/>}/>
         <Route path="/sharelink/:surveyID" element={<ShareLink/>}/>
         <Route path="/result/:surveyID" element={<Result/>}/>
-        /* can use below route for 404 page */
-        {/* <Route path="*" element={<NotFound/>} */} 
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </>
   )
