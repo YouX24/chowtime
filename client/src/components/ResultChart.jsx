@@ -6,6 +6,7 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 const ResultChart = (props) => {
 
     const options = {
+        maintainAspectRatio: false,
         scales: {
             x: {
                 title:{
