@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "./Spinner";
+import NotFound from "./NotFound";
 
 const Survey = () => {
 
@@ -12,10 +13,10 @@ const Survey = () => {
     useEffect(() => {
         const getOptions = async () => {
             try {
-                const response = await fetch("http://localhost:5000/retrieve/" + surveyID, {
+                const response = await fetch(`http://localhost:5000/retrieve/${surveyID}`, {
                     method: "GET",
                 });
-                const data = await response.json()
+                const data = await response.json()   
                 const optArray = []
                 for (let d of data) {
                     const { optName } = d
@@ -23,7 +24,7 @@ const Survey = () => {
                 }
                 setOptions(optArray)
             } catch (error) {
-                console.log(error)
+                window.location.href = "/survey-not-found"
             }
         }
         getOptions()
@@ -69,7 +70,6 @@ const Survey = () => {
 
     useEffect(() => {
         if (options.length === 1) {
-            console.log("hi")
             updateWinner()
         }
     }, [options])

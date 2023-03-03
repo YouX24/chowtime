@@ -69,14 +69,13 @@ app.put("/update-win", async (req, res) => {
 // get route to get options of a survey
 app.get("/retrieve/:surveyID", async (req, res) => {
     const { surveyID } = req.params
-    // const columns = ["optName", "surveyID"];
     const { data, error } = await supabase
         .from("options")
         .select("id, optName, surveyID")
         .eq("surveyID", surveyID)
     
     if (error) {
-        return res.status(400).send({status: "failed"})
+        return res.status(404).send({status: "not found"})
     } else {
         return res.status(200).json(data)
     }
@@ -91,8 +90,9 @@ app.get("/getresult/:surveyID", async (req, res) => {
         .select("optName, wins")
         .eq("surveyID", surveyID)
         .order("wins", {ascending: false})
+
     if (error) {
-        return res.status(400).send({status: "failed"})
+        return res.status(404).send({status: "not found"})
     } else {
         return res.status(200).json(data)
     }

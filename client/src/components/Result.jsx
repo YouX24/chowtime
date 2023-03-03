@@ -17,7 +17,7 @@ const Result = () => {
                 const data = await response.json()
                 setUpChart(data)
             } catch (error) {
-                console.log(error)
+                window.location.href = "/results-not-found"
             }
         }
         getResult()
@@ -25,22 +25,27 @@ const Result = () => {
 
 
     const setUpChart = async(resultData) => {
-        setChartData({
-            labels: resultData.map(x => x.optName),
-            datasets: [
-                {
-                label: 'Votes',
-                data: resultData.map(x => x.wins),
-                backgroundColor: [
-                    '#FFDCC8',
+        try {
+            setChartData({
+                labels: resultData.map(x => x.optName),
+                datasets: [
+                    {
+                    label: 'Votes',
+                    data: resultData.map(x => x.wins),
+                    backgroundColor: [
+                        '#FFDCC8',
+                    ],
+                    borderColor: [
+                        '#3B584D',
+                    ],
+                    borderWidth: 1,
+                    },
                 ],
-                borderColor: [
-                    '#3B584D',
-                ],
-                borderWidth: 1,
-                },
-            ],
-        })
+            })
+        } catch (error) {
+            window.location.href = "/result-not-found"
+        }
+        
     }
 
     return (
