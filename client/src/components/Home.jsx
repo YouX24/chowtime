@@ -17,8 +17,13 @@ const Home = (props) => {
         return allItems
     }
 
+    // remove previous options whenever user clicks back to previous create survey page
+    window.onpopstate = () => {
+        props.resetOptions()
+    }
+
     return (
-        <div className="min-h-screen bg-[#89C7AE] pb-10 px-4 pt-4">
+        <div className="min-h-screen bg-gradient-to-r from-[#89C7AE] to-blue-400 pb-10 px-4 pt-4">
             {props.showDuplication && <OptionDuplicationError/>}
             {props.showOptionCountError && <OptionCountError/>}
             {props.showVerification && <Verification handleVerification={props.handleVerification}/>}

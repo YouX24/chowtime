@@ -51,6 +51,13 @@ function App() {
   }
 
 
+  // reset option states
+  const resetOptions = () => {
+    setOptObj({})
+    setUniqObj(new Set())
+  }
+
+
   // remove items from itemsObj
   const removeItem = (itemID) => {
     let itemsObjCopy = {...optObj}
@@ -107,7 +114,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showVerification={showVerification} handleVerification={handleVerification} showDuplication={showDuplication} showOptionCountError={showOptionCountError}/>}/>
+        <Route exact path="/" element={<Home itemsObj={optObj} addItem={addItem} removeItem={removeItem} verifySurveyCreation={verifySurveyCreation} showVerification={showVerification} handleVerification={handleVerification} showDuplication={showDuplication} showOptionCountError={showOptionCountError} resetOptions={resetOptions}/>}/>
         <Route path="/survey/:surveyID" element={<Survey/>}/>
         <Route path="/sharelink/:surveyID" element={<ShareLink/>}/>
         <Route path="/result/:surveyID" element={<Result/>}/>

@@ -13,7 +13,7 @@ const ShareLink = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#89C7AE] flex justify-center items-center flex-col p-2">
+        <div className="min-h-screen bg-gradient-to-r from-[#89C7AE] to-blue-400 flex justify-center items-center flex-col p-2">
             <p className="text-center pb-2">Share this link with participants</p>
             <div className="flex justify-center gap-2 w-full">
                 <input className="outline-none rounded-md p-1 text-center w-[35rem]" id="sharable-link" type="text" value={surveyLink} readOnly/>

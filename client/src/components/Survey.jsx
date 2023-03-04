@@ -76,7 +76,7 @@ const Survey = () => {
 
     const btnStyle = "w-40 h-12 bg-[#FFDCC8] text-[#36395A] rounded-md shadow-md shadow-gray-400 ease-in-out duration-200 hover:scale-105 hover:shadow-lg hover:shadow-gray-500"
     return (
-        <div className="h-screen w-screen bg-[#89C7AE] flex justify-center items-center">
+        <div className="h-screen w-screen bg-gradient-to-r from-[#89C7AE] to-blue-400 flex justify-center items-center">
             {options.length === 0 && <Spinner/>}
             {options.length === 1 && (
                 <div className="flex flex-col justify-center items-center gap-4 p-2">
