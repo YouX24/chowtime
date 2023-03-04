@@ -15,15 +15,11 @@ const ResultChart = (props) => {
                 }
             },
             y: {
-                title: {
-                    display: true,
-                    text: "Votes"
-                },
                 beginAtZero: true,
                 ticks: {
                     stepSize: 1,
                 }
-            }
+            },
         }
     }
 
