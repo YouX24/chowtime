@@ -49,8 +49,10 @@ const Result = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#89C7AE] flex justify-center items-center flex-col">
-            <ResultChart chartData={chartData}/>
+        <div className="h-screen w-screen bg-[#89C7AE]">
+            <div className="xl:w-10/12 m-auto h-full">
+                <ResultChart chartData={chartData}/>
+            </div>
         </div>
     )
 }
