@@ -13,7 +13,7 @@ const Survey = () => {
     useEffect(() => {
         const getOptions = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/retrieve/${surveyID}`, {
+                const response = await fetch(`https://chowtimebackend.onrender.com/retrieve/${surveyID}`, {
                     method: "GET",
                 });
                 const data = await response.json()   
@@ -53,7 +53,7 @@ const Survey = () => {
 
     const updateWinner = async () => {
         try {
-            await fetch("http://localhost:5000/update-win", {
+            await fetch("https://chowtimebackend.onrender.com/update-win", {
                 method: "PUT",
                 headers: {
                 "Content-Type": "application/json"

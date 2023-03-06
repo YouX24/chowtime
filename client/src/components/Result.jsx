@@ -11,7 +11,7 @@ const Result = () => {
     useEffect(() => {
         const getResult = async () => {
             try {
-                const response = await fetch("http://localhost:5000/getresult/" + surveyID, {
+                const response = await fetch("https://chowtimebackend.onrender.com/getresult/" + surveyID, {
                     method: "GET",
                 });
                 const data = await response.json()

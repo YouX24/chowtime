@@ -93,7 +93,7 @@ function App() {
   const createSurvey = async () => {
     const id = uuidv4()
     try {
-      await fetch("http://localhost:5000/insert", {
+      await fetch("https://chowtimebackend.onrender.com/insert", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

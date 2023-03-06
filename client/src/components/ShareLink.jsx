@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 const ShareLink = () => {
     const { surveyID } = useParams()
     const hostName = window.location.hostname
-    const portNum = window.location.port
-    const surveyLink = hostName + ":" + portNum + "/survey/" +  surveyID
+    // const portNum = window.location.port
+    const surveyLink = hostName + "/survey/" +  surveyID
     const copyLink = () => {
         const linkInput = document.getElementById("sharable-link")
         linkInput.select()
