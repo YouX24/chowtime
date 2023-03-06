@@ -30,6 +30,11 @@ const handleOptionInsert = async (id, optName, surveyID, wins) => {
 }
 
 
+app.get('/', (req, res) => {
+    res.send('chow time api')
+})
+
+
 // post route for inserting into supabase
 app.post("/insert", async (req, res) => {
     const { options, surveyID } = req.body
@@ -98,4 +103,4 @@ app.get("/getresult/:surveyID", async (req, res) => {
     }
 })
 
-app.listen(5000, () => {console.log("Server started on port 5000")})
+app.listen(process.env.PORT, () => {console.log("Server started")})
