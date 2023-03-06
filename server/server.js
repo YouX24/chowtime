@@ -10,6 +10,7 @@ const jsonParser = express.json()
 app.use(jsonParser);
 app.use(cors())
 
+
 // Supabase Connection
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
 
@@ -31,12 +32,14 @@ const handleOptionInsert = async (id, optName, surveyID, wins) => {
 
 
 app.get('/', (req, res) => {
+    res.setHeader("Access-Control-Allow-Credentials", "true")
     res.send('chow time api')
 })
 
 
 // post route for inserting into supabase
 app.post("/insert", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Credentials", "true")
     const { options, surveyID } = req.body
     if (!options) {
         return res.status(400).send({status: "failed"})
@@ -54,6 +57,7 @@ app.post("/insert", async (req, res) => {
 
 // update option wins
 app.put("/update-win", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Credentials", "true")
     const { option, surveyID } = req.body
 
     if (!option || !surveyID) {
@@ -73,6 +77,7 @@ app.put("/update-win", async (req, res) => {
 
 // get route to get options of a survey
 app.get("/retrieve/:surveyID", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Credentials", "true")
     const { surveyID } = req.params
     const { data, error } = await supabase
         .from("options")
@@ -89,6 +94,7 @@ app.get("/retrieve/:surveyID", async (req, res) => {
 
 // get route to get options and options wins
 app.get("/getresult/:surveyID", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Credentials", "true")
     const { surveyID } = req.params
     const { data, error } = await supabase
         .from("options")
