@@ -77,7 +77,7 @@ app.put("/update-win", async (req, res) => {
 
 // get route to get options of a survey
 app.get("/retrieve/:surveyID", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true")
+    // res.setHeader("Access-Control-Allow-Credentials", "true")
     const { surveyID } = req.params
     const { data, error } = await supabase
         .from("options")
@@ -94,7 +94,7 @@ app.get("/retrieve/:surveyID", async (req, res) => {
 
 // get route to get options and options wins
 app.get("/getresult/:surveyID", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true")
+    // res.setHeader("Access-Control-Allow-Credentials", "true")
     const { surveyID } = req.params
     const { data, error } = await supabase
         .from("options")
