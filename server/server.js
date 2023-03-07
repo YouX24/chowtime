@@ -32,14 +32,14 @@ const handleOptionInsert = async (id, optName, surveyID, wins) => {
 
 
 app.get('/', (req, res) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true")
+    // res.setHeader("Access-Control-Allow-Credentials", "true")
     res.send('chow time api')
 })
 
 
 // post route for inserting into supabase
 app.post("/insert", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true")
+    // res.setHeader("Access-Control-Allow-Credentials", "true")
     const { options, surveyID } = req.body
     if (!options) {
         return res.status(400).send({status: "failed"})
@@ -57,7 +57,7 @@ app.post("/insert", async (req, res) => {
 
 // update option wins
 app.put("/update-win", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true")
+    // res.setHeader("Access-Control-Allow-Credentials", "true")
     const { option, surveyID } = req.body
 
     if (!option || !surveyID) {
